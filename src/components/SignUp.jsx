@@ -10,11 +10,13 @@ export function SignUp({ toogleForm }) {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [users, setUsers] = useLocalStorageState("users", []);
+  const [isLoading, setIsLoading] = React.useState(false);
 
   const history = useHistory();
 
   const handleSubmit = (e) => {
     e.preventDefault(); // evita que se renderize todos los componentes
+    setIsLoading(true);
 
     //validacion en el caso que lo queramos dsp del submit, sino la validacion
     //la hacemos en cada handle
@@ -29,6 +31,7 @@ export function SignUp({ toogleForm }) {
     setUsers([...users, user]);
 
     sleep().then(() => {
+      setIsLoading(false);
       history.push("/signin");
     });
   };
@@ -58,17 +61,42 @@ export function SignUp({ toogleForm }) {
       border="1px solid #c2c2c2"
       borderRadius="8px"
       onSubmit={handleSubmit}
+      bg="blue.600"
     >
-      <Text>Welcome to Coderhood! 📓 </Text>
-      <Heading mb="2rem">Signup</Heading>
-      <Input onChange={handleFirstName} mb="1rem" placeholder="First Name" />
-      <Input onChange={handleLastName} mb="1rem" placeholder="Last Name" />
-      <Input onChange={handleEmail} mb="1rem" placeholder="Email" />
-      <Input onChange={handlePassword} mb="1rem" placeholder="Password" />
-      <Button colorScheme="blue" mt="20px" type="submit">
-        Signup
+      <Text mb="2rem" fontSize="1.3rem" fontWeight="bold" as="samp">
+        Welcome to MyBlog App! 📓{" "}
+      </Text>
+      <Heading mb="2rem">Sign Up</Heading>
+      <Input
+        bg="white"
+        onChange={handleFirstName}
+        mb="1rem"
+        placeholder="First Name"
+      />
+      <Input
+        bg="white"
+        onChange={handleLastName}
+        mb="1rem"
+        placeholder="Last Name"
+      />
+      <Input bg="white" onChange={handleEmail} mb="1rem" placeholder="Email" />
+      <Input
+        bg="white"
+        onChange={handlePassword}
+        mb="1rem"
+        placeholder="Password"
+      />
+      <Button
+        colorScheme="gray"
+        mt="20px"
+        type="submit"
+        variant="solid"
+        disabled={isLoading}
+        isLoading={isLoading}
+      >
+        Sign up
       </Button>
-      <Button mt="1rem" colorScheme="blue" variant="ghost" onClick={toogleForm}>
+      <Button mt="1rem" color="black" variant="ghost" onClick={toogleForm}>
         Already have an account? Sign In
       </Button>
     </Flex>
