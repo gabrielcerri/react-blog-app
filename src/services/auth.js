@@ -1,12 +1,23 @@
 import { sleep } from "../utils/sleep";
 
 export const doSignin = async (users, email, password) => {
-  const isAuth = users.find((user) => {
+  const storedUser = users.find((user) => user.email === email);
+
+  if (!storedUser) {
+    return Promise.reject("El usuario ingresado no existe");
+  }
+
+  const user = users.find((user) => {
     return user.email === email && user.password === password;
   });
 
   await sleep(1000);
-  return isAuth;
+  if (!user) {
+    return Promise.reject("Contraseña inexistente");
+  }
+  // si llega hasta aca, significa que la promesa se resuelve bien
+  // porque las funciones async (asíncronas) devuelven una promesa
+  return user;
 };
 
 export const doSignup = async (users, setUsers, user) => {
@@ -32,7 +43,7 @@ export const doSignup = async (users, setUsers, user) => {
 
   if (errors.length > 0) {
     await sleep(1000);
-    Promise.reject(errors);
+    return Promise.reject(errors);
   } else {
     await sleep();
     setUsers([...users, user]);

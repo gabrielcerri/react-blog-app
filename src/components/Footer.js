@@ -7,7 +7,7 @@ export const Footer = () => {
       bg="black"
       direction="row"
       px="10rem"
-      py="2rem"
+      py="1.5rem"
       justify="center"
     >
       <Text color="white"> Gabriel Cerri 2021 © </Text>
