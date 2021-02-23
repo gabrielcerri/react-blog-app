@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { Home, Profile, SignIn, SignUp, Layout } from "./";
+import { Home, Profile, SignIn, SignUp, Layout, Unauthorized } from "./";
 import { UserContext } from "../context/user";
 
 export const App = () => {

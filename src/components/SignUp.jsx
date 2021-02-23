@@ -64,6 +64,7 @@ export function SignUp() {
     <Flex
       as="form"
       w="400px"
+      h="520px"
       p="2rem"
       direction="column"
       backgroundColor="white"
@@ -123,6 +124,7 @@ export function SignUp() {
         Sign up
       </Button>
       <Button
+        padding="2px"
         mt="1rem"
         color="black"
         colorScheme="teal"
