@@ -5,5 +5,4 @@ export { Profile } from "./Profile";
 export { SignUp } from "./SignUp";
 export { SignIn } from "./SignIn";
 export { Layout } from "./Layout";
-export { Unauthorized } from "./Unauthorized";
 export { ProtectedRoute } from "./ProtectedRoute";
